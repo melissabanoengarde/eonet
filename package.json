@@ -2,6 +2,7 @@
   "name": "eonet",
   "version": "0.1.0",
   "private": true,
+  "author": "Melissa Banoen-Garde",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,6 +12,7 @@
   "dependencies": {
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
+    "mapbox-gl": "^2.13.0",
     "next": "13.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"

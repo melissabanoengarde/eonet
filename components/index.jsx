@@ -1,3 +1,4 @@
 import Data from "./Data";
+import Mapbox from "./Mapbox";
 
-export { Data };
+export { Data, Mapbox };

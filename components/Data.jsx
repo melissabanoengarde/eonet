@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 async function getData() {
   const response = await fetch(
@@ -30,7 +31,11 @@ const Data = async () => {
         >
           <p>{x.title}</p>
           <p>Categorie: {x.categories[0].title}</p>
-          <p>Source: {x.sources[0].url}</p>
+          <p>
+            <Link href={x.sources[0].url} target="_blank">
+              Source
+            </Link>
+          </p>
           <p>Date: {x.geometry[0].date}</p>
 
           <div>
