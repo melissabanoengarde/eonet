@@ -18,7 +18,9 @@ const Data = async () => {
   // console.log(`in comp: ${events.map((x) => x.title)}`);
 
   return (
-    <div>
+    <div
+      style={{ position: "absolute", top: "1rem", left: "1rem", zIndex: "8" }}
+    >
       <div style={{ marginBottom: "2rem" }}>
         <p>{title}</p>
         <p>{description}</p>

@@ -1,36 +1,31 @@
 "use client";
+
 import { useRef, useEffect, useState } from "react";
 // import "mapbox-gl/dist/mapbox-gl.css";
-import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+import Map from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+// import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
 const Mapbox = () => {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
+  const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+  const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
-
-  // Initialize map
-  useEffect(() => {
-    if (map.current) return; // initialize map only once
-
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v12",
-      center: [lng, lat],
-      zoom: zoom,
-    });
+  const [viewport, setViewport] = useState({
+    latitude: 37.7577,
+    longitude: -122.4376,
+    zoom: 0,
   });
 
   return (
     <div>
-      <div
-        ref={mapContainer}
-        className="map-container"
-        style={{ height: "100vh" }}
+      <Map
+        initialViewState={{ ...viewport }}
+        style={{ width: "100%", height: "100vh" }}
+        mapStyle={mapStyle}
+        mapboxAccessToken={MAPBOX_TOKEN}
+        onViewportChange={setViewport}
       />
     </div>
   );
