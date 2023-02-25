@@ -1,14 +1,12 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-// import "mapbox-gl/dist/mapbox-gl.css";
-
+import { useState } from "react";
 import Map from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-// import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+const Mapbox = ({ eonetData }) => {
+  console.log(eonetData);
 
-const Mapbox = () => {
   const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
   const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 

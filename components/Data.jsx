@@ -1,20 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-async function getData() {
-  const response = await fetch(
-    "https://eonet.gsfc.nasa.gov/api/v3/categories/volcanoes"
-  );
-  try {
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const Data = async () => {
-  const data = await getData();
-  const { title, description, events } = data;
+const Data = async ({ eonetData }) => {
+  const { title, description, events } = eonetData;
   // console.log(`in comp: ${events.map((x) => x.title)}`);
 
   return (
