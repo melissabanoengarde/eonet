@@ -19,9 +19,12 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className={ips.className}>
+    <main
+      className={ips.className}
+      style={{ width: "100%", height: "100vh", overflow: "hidden" }}
+    >
       <Mapbox eonetData={data} />
-      <Data eonetData={data} />
+      <Data />
     </main>
   );
 }

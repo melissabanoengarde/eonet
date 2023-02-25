@@ -5,3 +5,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.databox {
+  width: 400px;
+  height: 300px;
+  background: #fff;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 8;
+}
