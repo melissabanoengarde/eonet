@@ -52,15 +52,16 @@ const Mapbox = ({ eonetData }) => {
     []
   );
 
+  console.log(data);
   const layerStyle = {
     id: "point",
     type: "circle",
     paint: {
-      "circle-radius": 5,
+      "circle-radius": 2,
       "circle-color": "#ff3700",
       "circle-opacity": 0.8,
       "circle-stroke-color": "#f28d6b",
-      "circle-stroke-width": 3,
+      "circle-stroke-width": 1,
     },
   };
 
@@ -69,7 +70,14 @@ const Mapbox = ({ eonetData }) => {
       {loaded ? (
         <Map
           initialViewState={{ ...viewport }}
-          style={{ width: "100%", height: "105vh" }}
+          style={{
+            width: "100%",
+            height: "105vh",
+            position: "fixed",
+            top: "0",
+            left: "0",
+            zIndex: "1",
+          }}
           mapStyle={mapStyle}
           mapboxAccessToken={MAPBOX_TOKEN}
           onViewportChange={setViewport}

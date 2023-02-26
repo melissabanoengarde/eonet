@@ -36,7 +36,22 @@ const Data = () => {
     //     </div>
     //   ))}
     // </div>
-    <div className="databox">dummy data</div>
+    <div className="databox">
+      <ul>
+        <li>
+          <p>Title</p>
+          <p>Epi Volcano, Vanuatu</p>
+        </li>
+        <li>
+          <p>Date</p>
+          <p>2023-01-31T00:00:00Z</p>
+        </li>
+        <li>
+          <p>Source</p>
+          <p>https://volcano.si.edu/volcano.cfm?vn=</p>
+        </li>
+      </ul>
+    </div>
   );
 };
 

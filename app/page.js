@@ -6,7 +6,7 @@ const ips = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400"] });
 
 async function getData() {
   const response = await fetch(
-    "https://eonet.gsfc.nasa.gov/api/v3/categories/volcanoes"
+    "https://eonet.gsfc.nasa.gov/api/v3/categories/wildfires"
   );
   try {
     return await response.json();
@@ -23,6 +23,7 @@ export default async function Home() {
       className={ips.className}
       style={{ width: "100%", height: "100vh", overflow: "hidden" }}
     >
+      <h1 className="mainTitle">eonet</h1>
       <Mapbox eonetData={data} />
       <Data />
     </main>
