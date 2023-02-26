@@ -7,8 +7,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const Mapbox = ({ eonetData }) => {
   const { events } = eonetData;
-  const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_VERCEL_ENV_ACCESS_TOKEN;
-  const mapStyle = process.env.NEXT_PUBLIC_VERCEL_ENV_MAP_STYLE;
+  const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
+  const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 
   const [data, setData] = useState(null);
   const [loaded, setLoaded] = useState(false);
