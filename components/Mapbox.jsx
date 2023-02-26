@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import Data from "./Data";
 
-import Map, { Marker, Source, Layer } from "react-map-gl";
+import Map, { Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const Mapbox = ({ eonetData }) => {
@@ -12,7 +11,6 @@ const Mapbox = ({ eonetData }) => {
   const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 
   const [data, setData] = useState(null);
-
   const [loaded, setLoaded] = useState(false);
 
   const [viewport, setViewport] = useState({
@@ -23,28 +21,9 @@ const Mapbox = ({ eonetData }) => {
     pitch: 0,
   });
 
-  // ===============================================
-  const geojson1 = {
-    type: "FeatureCollection",
-    features: data && data,
-  };
-
   const geojson = {
     type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        geometry: { type: "Point", coordinates: [-122.4, 37.8] },
-      },
-      {
-        type: "Feature",
-        geometry: { type: "Point", coordinates: [168.37, -16.68] },
-      },
-      {
-        type: "Feature",
-        geometry: { type: "Point", coordinates: [123.505, -8.272] },
-      },
-    ],
+    features: data && data,
   };
 
   useEffect(
@@ -72,43 +51,18 @@ const Mapbox = ({ eonetData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
-  // console.log(data);
-  // ===============================================
 
   const layerStyle = {
     id: "point",
     type: "circle",
     paint: {
-      "circle-radius": 10,
-      "circle-color": "#FFFFFF",
+      "circle-radius": 5,
+      "circle-color": "#ff3700",
+      "circle-opacity": 0.8,
+      "circle-stroke-color": "#f28d6b",
+      "circle-stroke-width": 3,
     },
   };
-
-  // const pins = useMemo(
-  //   () =>
-  //     events.map((x) => (
-  //       <Marker
-  //         key={x.id}
-  //         longitude={x.geometry[0].coordinates[0]}
-  //         latitude={x.geometry[0].coordinates[1]}
-  //         anchor="bottom"
-  //       >
-  //         <span
-  //           style={{ fontSize: "1rem" }}
-  //           onMouseEnter={() => console.log("HOVERED")}
-  //           // onMouseEnter={() => <Data title={x.title} />}
-  //         >
-  //           🔶
-  //         </span>
-  //       </Marker>
-  //     )),
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // );
-
-  console.log(data);
-  console.log(geojson1.features);
-  console.log(geojson.features);
 
   return (
     <div>
@@ -121,7 +75,7 @@ const Mapbox = ({ eonetData }) => {
           onViewportChange={setViewport}
           // onMouseEnter={""}
         >
-          <Source id="my-data" type="geojson" data={geojson1}>
+          <Source id="my-data" type="geojson" data={geojson}>
             <Layer {...layerStyle} />
           </Source>
         </Map>
@@ -137,8 +91,6 @@ const Mapbox = ({ eonetData }) => {
           LOADINGGGG
         </h1>
       )}
-      {/* {pins} */}
-      {/* </Map> */}
     </div>
   );
 };
