@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Data from "./Data";
 
 import Map, { Marker, Source, Layer } from "react-map-gl";
@@ -8,18 +8,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const Mapbox = ({ eonetData }) => {
   const { events } = eonetData;
-  // console.log(events[0]);
-
-  // setData(
-  //   events.map((x) => {
-  //     x.geometry[0];
-  //   })
-  // );
-
-  // console.log(data);
-
   const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
   const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
+
+  const [data, setData] = useState(null);
+
+  const [loaded, setLoaded] = useState(false);
 
   const [viewport, setViewport] = useState({
     latitude: 35,
@@ -29,11 +23,57 @@ const Mapbox = ({ eonetData }) => {
     pitch: 0,
   });
 
+  // ===============================================
+  const geojson1 = {
+    type: "FeatureCollection",
+    features: data && data,
+  };
+
   const geojson = {
     type: "FeatureCollection",
-    features: [{ ...events[0] }],
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [-122.4, 37.8] },
+      },
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [168.37, -16.68] },
+      },
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [123.505, -8.272] },
+      },
+    ],
   };
-  console.log(geojson);
+
+  useEffect(
+    () => {
+      const eventData = events.map((x) => ({
+        type: "Feature",
+        properties: {
+          name: x.title,
+          category: x.categories[0].title,
+          source: x.sources[0].url,
+          date: x.geometry[0].date,
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [
+            x.geometry[0].coordinates[0],
+            x.geometry[0].coordinates[1],
+          ],
+        },
+      }));
+
+      setData(eventData);
+      setLoaded(true);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+  // console.log(data);
+  // ===============================================
 
   const layerStyle = {
     id: "point",
@@ -66,21 +106,39 @@ const Mapbox = ({ eonetData }) => {
   //   []
   // );
 
+  console.log(data);
+  console.log(geojson1.features);
+  console.log(geojson.features);
+
   return (
     <div>
-      <Map
-        initialViewState={{ ...viewport }}
-        style={{ width: "100%", height: "105vh" }}
-        mapStyle={mapStyle}
-        mapboxAccessToken={MAPBOX_TOKEN}
-        onViewportChange={setViewport}
-        onMouseEnter={""}
-      >
-        <Source id="my-data" type="geojson" data={geojson}>
-          <Layer {...layerStyle} />
-        </Source>
-        {/* {pins} */}
-      </Map>
+      {loaded ? (
+        <Map
+          initialViewState={{ ...viewport }}
+          style={{ width: "100%", height: "105vh" }}
+          mapStyle={mapStyle}
+          mapboxAccessToken={MAPBOX_TOKEN}
+          onViewportChange={setViewport}
+          // onMouseEnter={""}
+        >
+          <Source id="my-data" type="geojson" data={geojson1}>
+            <Layer {...layerStyle} />
+          </Source>
+        </Map>
+      ) : (
+        <h1
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          LOADINGGGG
+        </h1>
+      )}
+      {/* {pins} */}
+      {/* </Map> */}
     </div>
   );
 };
