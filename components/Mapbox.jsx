@@ -52,12 +52,19 @@ const Mapbox = ({ eonetData }) => {
     []
   );
 
-  console.log(data);
+  // console.log(data);
   const layerStyle = {
     id: "point",
     type: "circle",
     paint: {
-      "circle-radius": 2,
+      "circle-radius": {
+        base: 1.5, // base-level: size of the circls at the lowest zoom level
+        stops: [
+          // zoomLvl-circleRadius pair
+          [1.5, 2],
+          [7, 15],
+        ],
+      },
       "circle-color": "#ff3700",
       "circle-opacity": 0.8,
       "circle-stroke-color": "#f28d6b",
