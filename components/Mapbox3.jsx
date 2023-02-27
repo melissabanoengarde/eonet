@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import Map, { Marker } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 
 const Mapbox3 = ({ eonetData }) => {
   const { events } = eonetData;
   // console.log(events);
 
   const [loaded, setLoaded] = useState(false);
+  const [popupInfo, setPopupInfo] = useState(null);
   const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
   const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 
@@ -27,18 +28,28 @@ const Mapbox3 = ({ eonetData }) => {
           longitude={x.geometry[0].coordinates[0]}
           latitude={x.geometry[0].coordinates[1]}
           anchor="bottom"
+          // onClick={() => console.log("HOVER")}
         >
-          <p>📍</p>
+          <p
+            style={{ fontSize: "1.2rem" }}
+            onMouseEnter={() => {
+              setPopupInfo(x);
+              console.log(popupInfo);
+            }}
+            onMouseLeave={() => setPopupInfo(null)}
+          >
+            📍
+          </p>
         </Marker>
       )),
-    [events]
+    [events, popupInfo]
   );
 
   useEffect(() => {
     if (markers) {
       setLoaded(true);
     }
-  }, [markers]);
+  }, []);
   // console.log(markers);
 
   return (
@@ -59,6 +70,24 @@ const Mapbox3 = ({ eonetData }) => {
           onViewportChange={setViewport}
         >
           {markers}
+          {popupInfo && (
+            <Popup
+              anchor="top"
+              longitude={popupInfo.geometry[0].coordinates[0]}
+              latitude={popupInfo.geometry[0].coordinates[1]}
+              onMouseLeave={() => setPopupInfo(null)}
+            >
+              <div
+                style={{
+                  width: "200px",
+                  heigth: "100px",
+                  background: "#FFFFFF",
+                }}
+              >
+                <h1>{popupInfo.title}</h1>
+              </div>
+            </Popup>
+          )}
         </Map>
       ) : (
         <h1>LOADINGGGG</h1>
