@@ -21,10 +21,13 @@ const Mapbox = ({ eonetData }) => {
     pitch: 0,
   });
 
-  const geojson = {
-    type: "FeatureCollection",
-    features: data && data,
-  };
+  const geojson = useMemo(
+    () => ({
+      type: "FeatureCollection",
+      features: data && data,
+    }),
+    [data]
+  );
 
   useEffect(
     () => {
@@ -52,7 +55,6 @@ const Mapbox = ({ eonetData }) => {
     []
   );
 
-  // console.log(data);
   const layerStyle = {
     id: "point",
     type: "circle",
@@ -88,7 +90,6 @@ const Mapbox = ({ eonetData }) => {
           mapStyle={mapStyle}
           mapboxAccessToken={MAPBOX_TOKEN}
           onViewportChange={setViewport}
-          // onMouseEnter={""}
         >
           <Source id="my-data" type="geojson" data={geojson}>
             <Layer {...layerStyle} />
