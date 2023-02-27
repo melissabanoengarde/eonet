@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 
 import Map, { Source, Layer } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+// import "mapbox-gl/dist/mapbox-gl.css";
 
 const Mapbox = ({ eonetData }) => {
   const { events } = eonetData;
@@ -77,15 +77,15 @@ const Mapbox = ({ eonetData }) => {
 
   console.log(geojson);
 
-  const [hoverInfo, setHoverInfo] = useState(null);
-  const onHover = useCallback((event) => {
-    const { features, point } = event;
-    console.log(features);
-    const hoveredFeature = features && features[0];
+  // const [hoverInfo, setHoverInfo] = useState(null);
+  // const onHover = useCallback((event) => {
+  //   const { features, point } = event;
+  //   console.log(features);
+  //   const hoveredFeature = features && features[0];
 
-    setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y });
-  }, []);
-  console.log(hoverInfo);
+  //   setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y });
+  // }, []);
+  // console.log(hoverInfo);
 
   return (
     <div>
@@ -103,7 +103,7 @@ const Mapbox = ({ eonetData }) => {
           mapStyle={mapStyle}
           mapboxAccessToken={MAPBOX_TOKEN}
           onViewportChange={setViewport}
-          onMouseMove={onHover}
+          // onMouseMove={onHover}
         >
           <Source id="my-data" type="geojson" data={geojson}>
             <Layer {...layerStyle} />
