@@ -15,8 +15,8 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className="font-ips w-full h-[100vh] overflow-hidden cursor-crosshair">
-      <h1 className="inline-block fixed md:top-[1.5rem] md:left-[2rem] z-[8] md:text-[2.5rem] text-white ">
+    <main className="w-full h-[100vh] overflow-hidden cursor-crosshair">
+      <h1 className="inline-block fixed md:top-[1.5rem] md:left-[2rem] z-[8] md:text-[2.5rem] text-white uppercase">
         eonet/wildfires
       </h1>
 

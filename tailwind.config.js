@@ -3,7 +3,7 @@ module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      ips: ["IBM Plex Sans", "Helvetica", "sans-serif"],
+      noto: ["Noto Sans TC", "Helvetica", "sans-serif"],
     },
     backgroundSize: {
       500: "500px",
