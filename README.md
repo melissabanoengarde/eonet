@@ -1,6 +1,11 @@
 # eonet
 [Live Site](https://eonet-gamma.vercel.app/)
 
+## Preview
+<img src='./v1.png' align='center' />
+<br><br>
+<img src='./v1.gif' align='center' width='100%' />
+
 Etched into my brain after solved frustrations / things learned:
 - Next.js only loads environment variables that start with `NEXT_PUBLIC_` on the *client-side* to prevent accidentally exposing sensitive data to the client. Otherwise, to fetch env vars on the server-side, you can use the traditional `process.env` object directly.
 - "Geometric objects with additional properties are Feature objects. Sets of features are contained by FeatureCollection objects." - [source](https://geojson.org/)
