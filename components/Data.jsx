@@ -1,10 +1,7 @@
 import React from "react";
-// import Link from "next/link";
+import Link from "next/link";
 
-const Data = () => {
-  // const { title, description, events } = eonetData;
-  // console.log(`in comp: ${events.map((x) => x.title)}`);
-
+const Data = ({ title, date, source }) => {
   return (
     // <div
     //   style={{ position: "absolute", top: "1rem", left: "1rem", zIndex: "8" }}
@@ -40,15 +37,17 @@ const Data = () => {
       <ul>
         <li>
           <p>Title</p>
-          <p>Epi Volcano, Vanuatu</p>
+          <p>{title ? title : ""}</p>
         </li>
         <li>
           <p>Date</p>
-          <p>2023-01-31T00:00:00Z</p>
+          <p>{date ? date : ""}</p>
         </li>
         <li>
           <p>Source</p>
-          <p>https://volcano.si.edu/volcano.cfm?vn=</p>
+          <Link href={source ? source : "/"} target="_blank">
+            {source ? source : ""}
+          </Link>
         </li>
       </ul>
     </div>

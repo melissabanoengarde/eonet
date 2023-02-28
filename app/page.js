@@ -27,7 +27,7 @@ export default async function Home() {
       {/* <Mapbox eonetData={data} /> */}
       {/* <Mapbox2 eonetData={data} /> */}
       <Mapbox3 eonetData={data} />
-      <Data />
+      {/* <Data /> */}
     </main>
   );
 }

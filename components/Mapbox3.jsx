@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import Map, { Marker, Popup } from "react-map-gl";
+import Map, { Marker } from "react-map-gl";
+import Data from "./Data";
 
 const Mapbox3 = ({ eonetData }) => {
   const { events } = eonetData;
@@ -36,7 +37,7 @@ const Mapbox3 = ({ eonetData }) => {
               setPopupInfo(x);
               console.log(popupInfo);
             }}
-            onMouseLeave={() => setPopupInfo(null)}
+            // onMouseLeave={() => setPopupInfo(null)}
           >
             📍
           </p>
@@ -70,23 +71,16 @@ const Mapbox3 = ({ eonetData }) => {
           onViewportChange={setViewport}
         >
           {markers}
-          {popupInfo && (
-            <Popup
-              anchor="top"
-              longitude={popupInfo.geometry[0].coordinates[0]}
-              latitude={popupInfo.geometry[0].coordinates[1]}
-              onMouseLeave={() => setPopupInfo(null)}
-            >
-              <div
-                style={{
-                  width: "200px",
-                  heigth: "100px",
-                  background: "#FFFFFF",
-                }}
-              >
-                <h1>{popupInfo.title}</h1>
-              </div>
-            </Popup>
+
+          {popupInfo ? (
+            <Data
+              title={popupInfo.title}
+              date={popupInfo.geometry[0].date}
+              source={popupInfo.sources[0].url}
+              // onMouseLeave={() => setPopupInfo(null)}
+            />
+          ) : (
+            <Data />
           )}
         </Map>
       ) : (
