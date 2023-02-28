@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { Marker } from "react-map-gl";
 import Data from "./Data";
+import Loading from "./Loading";
 
 const Mapbox = ({ eonetData }) => {
   const { events } = eonetData;
@@ -33,7 +34,8 @@ const Mapbox = ({ eonetData }) => {
           // onClick={() => console.log("HOVER")}
         >
           <p
-            style={{ fontSize: "1.2rem" }}
+            // style={{ fontSize: "1.2rem" }}
+            className="text-[1.2rem] hover:text-[3rem] transition-all ease-in-out"
             onMouseEnter={() => {
               setPopupInfo(x);
             }}
@@ -57,6 +59,7 @@ const Mapbox = ({ eonetData }) => {
     <div>
       {loaded ? (
         <Map
+          // className="w-full h-[105vh] fixed top-0 left-0 z-1"
           initialViewState={{ ...viewport }}
           style={{
             width: "100%",
@@ -84,7 +87,7 @@ const Mapbox = ({ eonetData }) => {
           )}
         </Map>
       ) : (
-        <h1>LOADINGGGG</h1>
+        <Loading />
       )}
     </div>
   );
