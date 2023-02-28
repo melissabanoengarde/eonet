@@ -80,6 +80,8 @@ const Mapbox = ({ eonetData }) => {
               title={popupInfo.title}
               date={popupInfo.geometry[0].date}
               source={popupInfo.sources[0].url}
+              longitude={popupInfo.geometry[0].coordinates[0]}
+              latitude={popupInfo.geometry[0].coordinates[1]}
               // onMouseLeave={() => setPopupInfo(null)}
             />
           ) : (

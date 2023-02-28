@@ -1,4 +1,5 @@
-import { Mapbox } from "../components";
+import Link from "next/link";
+import { Mapbox, Footer } from "../components";
 
 async function getData() {
   const response = await fetch(
@@ -16,11 +17,13 @@ export default async function Home() {
 
   return (
     <main className="w-full h-[100vh] overflow-hidden cursor-crosshair">
-      <h1 className="inline-block fixed md:top-[1.5rem] md:left-[2rem] z-[8] md:text-[2.5rem] text-white uppercase">
-        eonet/wildfires
+      <h1 className="inline-block fixed md:top-[2rem] md:left-[2rem] z-[8] md:text-[1rem] text-white uppercase mix-blend-difference">
+        <Link href="/">eonet/wildfires</Link>
       </h1>
 
       <Mapbox eonetData={data} />
+
+      <Footer />
     </main>
   );
 }
