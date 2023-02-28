@@ -33,7 +33,7 @@ const Mapbox = ({ eonetData }) => {
         >
           <p
             // style={{ fontSize: "1.2rem" }}
-            className="text-[1.2rem] hover:text-[3rem] transition-all ease-in-out"
+            className="text-[0.7rem] hover:text-[3rem] transition-all ease-in-out"
             onMouseEnter={() => {
               setPopupInfo(x);
             }}
