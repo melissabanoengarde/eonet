@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <main style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
-      <h1 className="mainTitle">eonet</h1>
+      <h1 className="mainTitle">eonet/wildfires</h1>
       <Mapbox eonetData={data} />
     </main>
   );

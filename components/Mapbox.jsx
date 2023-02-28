@@ -36,7 +36,6 @@ const Mapbox = ({ eonetData }) => {
             style={{ fontSize: "1.2rem" }}
             onMouseEnter={() => {
               setPopupInfo(x);
-              console.log(popupInfo);
             }}
             // onMouseLeave={() => setPopupInfo(null)}
           >
@@ -44,7 +43,7 @@ const Mapbox = ({ eonetData }) => {
           </p>
         </Marker>
       )),
-    [events, popupInfo]
+    [events]
   );
 
   useEffect(() => {
@@ -52,7 +51,6 @@ const Mapbox = ({ eonetData }) => {
       setLoaded(true);
     }
   }, []);
-  // console.log(markers);
 
   return (
     <div>
