@@ -4,7 +4,7 @@ import Link from "next/link";
 const Data = ({ title, date, source, longitude, latitude }) => {
   return (
     <>
-      <div className="fixed top-[2rem] right-[2rem] z-[8] text-white bg-[#8e574e5f] bg-[url(/gr.png)] bg-repeat bg-500 backdrop-blur-[6px] border-[0.5px] border-[rgba(255,185,178,0.615)] border-mix-blend-difference rounded-lg overflow-hidden">
+      <div className="fixed top-[2rem] right-[2rem] z-[8] text-white bg-[#8e574e5f] bg-[url(/gr.png)] bg-repeat bg-500 backdrop-blur-[6px] border-[0.5px] border-[rgba(255,185,178,0.615)] border-mix-blend-difference rounded-lg">
         {title != null && date != null && source != null ? (
           <ul className="p-5 flex gap-8 font-noto">
             <li className="max-w-[400px]">

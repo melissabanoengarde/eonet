@@ -16,11 +16,9 @@ const Mapbox = ({ eonetData }) => {
   const mapStyle = process.env.NEXT_PUBLIC_MAP_STYLE;
 
   const [viewport, setViewport] = useState({
-    latitude: 35,
-    longitude: 0,
-    zoom: 1.5,
-    bearing: 0,
-    pitch: 0,
+    latitude: 40,
+    longitude: -42,
+    zoom: 2.5,
   });
 
   const markers = useMemo(
