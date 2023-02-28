@@ -50,6 +50,7 @@ const Mapbox = ({ eonetData }) => {
     if (markers) {
       setLoaded(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
